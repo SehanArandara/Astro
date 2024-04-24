@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import CardView from "../Components/CardView";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import loadingGif from "../Assets/loading.gif";
 
 const SearchResults = () => {
   const [dataArr, setDataArr] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState("");
   const { startDate, endDate } = useParams();
 
@@ -22,6 +24,8 @@ const SearchResults = () => {
     } catch (e) {
       console.log(e);
       setError("Error in Fetching APOD data");
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or failure
     }
   };
 
@@ -29,10 +33,21 @@ const SearchResults = () => {
     fetchData();
   }, [startDate, endDate]);
 
+  // Render loading GIF while data is being fetched
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center mt-10">
+        <img src={loadingGif} className="mb-4 max-w-full max-h-[500px]" />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>Search Results between {startDate}  to  {endDate}</h1>
-      <div className="flex flex-wrap">
+    <div className="m-10">
+      <div>
+        <h1>Search Results between {startDate} to {endDate}</h1>
+      </div>
+      <div className="flex flex-wrap justify-between items-center mt-10">
         {Array.isArray(dataArr) &&
           dataArr.map((apod) => <CardView key={apod.date} apodData={apod} />)}
       </div>

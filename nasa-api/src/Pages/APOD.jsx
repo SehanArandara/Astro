@@ -48,40 +48,57 @@ const APOD = () => {
   }
 
   return (
-    <div>
-      <div className="centerx">
-        <label htmlFor="start_date">Start Date:</label>
-        <input
-          type="date"
-          id="start_date"
-          value={start}
-          onChange={(e) => setStart(e.target.value)}
-        />
-        <br />
-        <label htmlFor="end_date">End Date:</label>
-        <input
-          type="date"
-          id="end_date"
-          value={end}
-          onChange={(e) => setEnd(e.target.value)}
-        />
-        <br />
-        <Link
-          to={`/apod/${start}/${end}`}
-          className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-        >
-          <button onClick={handleSearch}>Search</button>
-        </Link>
+    <div className="mt-20">
+      <div className="">
+        {searchType === "" && (
+          <div className="flex justify-center items-center gap-7">
+            <div>
+              <label htmlFor="start_date">Start Date:</label>
+              <input
+                type="date"
+                id="start_date"
+                value={start}
+                onChange={(e) => setStart(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="end_date">End Date:</label>
+              <input
+                type="date"
+                id="end_date"
+                value={end}
+                onChange={(e) => setEnd(e.target.value)}
+              />
+            </div>
+            <div>
+              <Link
+                to={`/apod/${start}/${end}`}
+                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+              >
+                <button className="bg-white" onClick={handleSearch}>Search</button>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {searchType === "dateRange" && <SearchResults dataArr={dataArr} />}
       </div>
+      <div>
+        {
+          searchType === "" && (
+              <div>
+                {
+                  data && <SingleAPOD apodData={data} />
+                }
+              </div>
+          )
+        }
 
-      {searchType === "" && (
-        <div className="text-white p-6">
-          <h1>ASTRONOMY PIC OF TODAY</h1>
-          {data && <SingleAPOD apodData={data} />}
-        </div>
-      )}
-
-      {searchType === "dateRange" && <SearchResults dataArr={dataArr} />}
+        {
+          searchType === 'dateRange' && <div><SearchResults dataArr={dataArr}/></div>
+        }
+      </div>
     </div>
   );
 };

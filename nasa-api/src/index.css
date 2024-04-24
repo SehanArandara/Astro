@@ -3,7 +3,8 @@
 @tailwind utilities;
 body {
   margin: 0;
-  background-color: rgb(12, 15, 63);
+  /* background-color: rgb(12, 15, 63); */
+  background-color: #33313b;
   font-family: "Poppins";
   color: white;
   -webkit-font-smoothing: antialiased;

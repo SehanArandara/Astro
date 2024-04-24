@@ -5,12 +5,26 @@ import { Link } from "react-router-dom";
 
 const CardView = ({ apodData }) => {
   return (
-    <div className="max-w-xs rounded overflow-hidden shadow-lg m-4">
-      <img src={apodData.url} alt={apodData.title} className="w-full" />
-      <p>{apodData.title}</p>
-      <Link to={`/apod/${apodData.date}`} className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-        View
-      </Link>
+    <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 border-2 border-blue-950">
+      <div className="m-2">
+        <div  className="flex items-center justify-center">
+          {
+            apodData.media_type === 'image' && <img src={apodData.url} alt={apodData.title} className="aspect-square" />
+          }
+          {
+            apodData.media_type === 'video' && <iframe src={apodData?.url} className="aspect-square" ></iframe>
+          }
+          
+        </div>
+      </div>
+      <div  className="flex items-center justify-center m-2">
+        <p className="text-center">{apodData.title}</p>
+      </div>
+      <div  className="flex items-center justify-center m-5">
+        <Link to={`/apod/${apodData.date}`} className="block mt-1 p-2 text-lg leading-tight font-medium text-white border-2 border-blue-950 hover:bg-black hover:bg-opacity-50 rounded-2xl">
+          View
+        </Link>
+      </div>
     </div>
   );
 };
