@@ -12,7 +12,7 @@ const APOD = () => {
   const [error, setError] = useState("");
   const [searchType, setSearchType] = useState("");
   const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [end, setEnd] = useState("");        
 
   useEffect(() => {
     if (startDate && endDate) {
