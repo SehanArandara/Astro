@@ -4,6 +4,8 @@ import APOD from './Pages/APOD';
 import NavBar from './Components/NavBar';
 import SingleAPOD from './Components/SingleAPOD';
 import SearchResults from './Components/SearchResults';
+import MediaSearch from './Pages/MediaSearch';
+import Home from './Pages/Home';
 
 const PageRoutings = () => {
 
@@ -13,11 +15,13 @@ const PageRoutings = () => {
     <BrowserRouter>
       <NavBar/>
       <Routes>
-        <Route path="/" element={<SingleAPOD date={today} />} />
+        {/* <Route path="/" element={<SingleAPOD date={today} />} /> */}
+        <Route path='/' element={<Home/>}/>
         <Route path="/apod" element={<APOD/>}/>
         <Route path="/apod/:date" element={<SingleAPOD/>}/>
         <Route path="/apod/:startDate/:endDate" element={<SearchResults/>}/>
         <Route path="/apod/:startDate" element={<SingleAPOD/>}/>
+        <Route path='/media' element={<MediaSearch/>}/>
       </Routes>
     </BrowserRouter>
   );

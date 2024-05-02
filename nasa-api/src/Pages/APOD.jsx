@@ -59,6 +59,7 @@ const APOD = () => {
                 id="start_date"
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
+                className="bg-black ml-7"
               />
             </div>
 
@@ -69,14 +70,15 @@ const APOD = () => {
                 id="end_date"
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
+                className="bg-black ml-7"
               />
             </div>
             <div>
               <Link
                 to={`/apod/${start}/${end}`}
-                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                className="block mt-1  leading-tight font-medium text-white hover:underline"
               >
-                <button className="bg-white" onClick={handleSearch}>Search</button>
+                <button className="bg-black p-1" onClick={handleSearch}>Search</button>
               </Link>
             </div>
           </div>

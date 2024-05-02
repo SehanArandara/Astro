@@ -13,8 +13,8 @@ const NavBar = () => {
           <Link to="/apod" className="text-white mx-4 hover:text-blue-100">
             Astronomy Pics
           </Link>
-          <Link to="/" className="text-white mx-4 hover:text-blue-100">
-            Gallery
+          <Link to="/media" className="text-white mx-4 hover:text-blue-100">
+            Media Search
           </Link>
           <Link to="/" className="text-white mx-4 hover:text-blue-100">
             Contact
