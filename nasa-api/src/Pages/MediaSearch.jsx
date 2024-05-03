@@ -59,15 +59,15 @@ const MediaSearch = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center m-20">
+      <div className="flex items-center justify-center m-20  bg-white p-4 rounded-lg text-black bg-opacity-15">
         <input
           type="text"
           value={query}
           onChange={handleInputChange}
           placeholder="Enter search query"
-          className="bg-black"
+          className="bg-white ml-7 border border-black p-2"
         />
-        <button onClick={handleSearch} className="ml-7">
+        <button onClick={handleSearch} className="ml-7 bg-black p-1 rounded-md text-white">
           Search
         </button>
       </div>

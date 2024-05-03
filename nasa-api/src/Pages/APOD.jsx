@@ -48,10 +48,11 @@ const APOD = () => {
   }
 
   return (
-    <div className="mt-20">
+    <div>
+      <div className="mt-20 bg">
       <div className="">
         {searchType === "" && (
-          <div className="flex justify-center items-center gap-7">
+          <div className="flex m-20 justify-center items-center gap-7 bg-white p-4 rounded-lg text-black border border-[#41A4FF] bg-opacity-15">
             <div>
               <label htmlFor="start_date">Start Date:</label>
               <input
@@ -59,7 +60,7 @@ const APOD = () => {
                 id="start_date"
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
-                className="bg-black ml-7"
+                className="bg-white ml-7  border border-black p-2 rounded-lg" 
               />
             </div>
 
@@ -70,7 +71,7 @@ const APOD = () => {
                 id="end_date"
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
-                className="bg-black ml-7"
+                className="bg-white ml-7 border border-black  p-2 rounded-lg"
               />
             </div>
             <div>
@@ -78,7 +79,7 @@ const APOD = () => {
                 to={`/apod/${start}/${end}`}
                 className="block mt-1  leading-tight font-medium text-white hover:underline"
               >
-                <button className="bg-black p-1" onClick={handleSearch}>Search</button>
+                <button className="bg-black p-2 rounded-md " onClick={handleSearch}>Search</button>
               </Link>
             </div>
           </div>
@@ -101,6 +102,7 @@ const APOD = () => {
           searchType === 'dateRange' && <div><SearchResults dataArr={dataArr}/></div>
         }
       </div>
+    </div>
     </div>
   );
 };

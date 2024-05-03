@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className="">
-      <nav className="bg-blue-gray-900 p-4 flex justify-between items-center border-b-4 border-blue-950">
-        <div className="text-white font-bold text-xl">Astronomy App</div>
+      <nav className="bg-blue-gray-900 p-4 flex justify-between items-center border-b-4 border-[#41A4FF]">
+        <div className="text-[#41A4FF] font-bold text-xl">Astronomy App</div>
         <div className="hidden md:block">
           <Link to="/" className="text-white mx-4 hover:text-blue-100">
             Home
