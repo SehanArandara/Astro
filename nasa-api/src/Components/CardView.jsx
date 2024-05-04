@@ -18,10 +18,10 @@ const CardView = ({ apodData }) => {
         </div>
       </div>
       <div  className="flex items-center justify-center m-2">
-        <p className="text-center">{apodData.title}</p>
+        <p className="text-center mt-4 font-semibold">{apodData.title}</p>
       </div>
       <div  className="flex items-center justify-center m-5">
-        <Link to={`/apod/${apodData.date}`} className="block mt-1 p-2 text-lg leading-tight font-medium text-white border-2 border-blue-950 hover:bg-black hover:bg-opacity-50 rounded-2xl">
+        <Link to={`/apod/${apodData.date}`} className="block mt-1 p-2 text-lg leading-tight text-center font-medium text-white border-2 border-blue-950 hover:bg-black hover:bg-opacity-50 rounded-2xl w-full">
           View
         </Link>
       </div>

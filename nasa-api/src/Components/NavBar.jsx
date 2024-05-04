@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className="">
-      <nav className="bg-blue-gray-900 p-4 flex justify-between items-center border-b-4 border-[#41A4FF]">
+      <nav className="bg-blue-gray-900 p-4 flex justify-between items-center border-b-2 border-[#41A4FF] ">
         <div className="text-[#41A4FF] font-bold text-xl">Astronomy App</div>
         <div className="hidden md:block">
           <Link to="/" className="text-white mx-4 hover:text-blue-100">
@@ -16,8 +16,8 @@ const NavBar = () => {
           <Link to="/media" className="text-white mx-4 hover:text-blue-100">
             Media Search
           </Link>
-          <Link to="/" className="text-white mx-4 hover:text-blue-100">
-            Contact
+          <Link to="/login" className="text-white mx-4 hover:text-blue-100">
+            Log In
           </Link>
         </div>
         <div className="md:hidden">

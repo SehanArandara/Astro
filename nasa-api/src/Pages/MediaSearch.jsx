@@ -59,21 +59,22 @@ const MediaSearch = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center m-20  bg-white p-4 rounded-lg text-black bg-opacity-15">
+      <div className="flex items-center justify-center m-8 md:m-20  bg-[#282828] p-4 rounded-lg text-black">
         <input
           type="text"
           value={query}
           onChange={handleInputChange}
           placeholder="Enter search query"
-          className="bg-white ml-7 border border-black p-2"
+          className="bg-white ml-7 border border-black p-3 rounded-md"
         />
-        <button onClick={handleSearch} className="ml-7 bg-black p-1 rounded-md text-white">
+        <button onClick={handleSearch} className="ml-7 bg-black p-3 rounded-md text-white">
           Search
         </button>
       </div>
       <div>
         {loading ? ( // Conditionally render loading image if loading is true
-          <img src={loadingImage} alt="Loading..." />
+          <div className="flex justify-center items-center"> <img src={loadingImage} alt="Loading..."  /></div>
+          
         ) : (
           currentPageResults.map(
             (item) =>
@@ -89,7 +90,7 @@ const MediaSearch = () => {
       </div>
 
       {/* Pagination controls */}
-      <div className="flex justify-center items-center mb-24">
+      <div className="flex justify-center items-center mb-24 mt-36">
         <div className="flex justify-center items-center gap-6">
           <div className="border border-black p-3">
             <button onClick={handlePreviousPage}>Previous</button>

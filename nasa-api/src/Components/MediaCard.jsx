@@ -5,58 +5,41 @@ const MediaCard = ({ item, image }) => {
   const { data } = item || {};
   const { title, photographer, keywords, nasa_id, date_created, description, media_type } = data?.[0] || {};
 
-  
-  const [showMore, setShowMore] = React.useState(false);
+  const [showMore, setShowMore] = React.useState(true);
 
-  
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
 
   return (
-    <div className="flex items-center mx-52 mb-10">
+    <div className="flex items-center justify-center m-8 md:m-24 mb-10">
       <div>
-        <div className="mb-10 text-3xl">
+        <div className="flex mb-10 text-3xl justify-center items-center font-medium">
           <h1>{title}</h1>
         </div>
-        <div>
+        <div className="flex justify-center items-center">
           <img
-            className="w-96 h-56 cursor-pointer"
+            className="flex w-96 h-56 cursor-pointer rounded-md mb-4"
             src={image}
             alt="not loaded"
+            onClick={toggleShowMore}
           />
-          {
-            !showMore && (
-              <button
-              className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              onClick={toggleShowMore}
-            >
-              Show Information
-          </button>
-            ) 
-          }
-          
         </div>
         {showMore && (
           <div className="mt-4">
-            <div>
-              <p>Photographer: {photographer}</p>
+            <div className="mb-2">
+              <p><b>Photographer:</b> {photographer}</p>
             </div>
-            <div>
-              <p>Keywords: {keywords?.join(", ")}</p>
+            <div className="mb-2">
+              <p><b>Keywords:</b> {keywords?.join(", ")}</p>
             </div>
-            <div>
-              <p>Date Created: {date_created}</p>
+            <div className="mb-2">
+              <p><b>Date Created:</b> {date_created}</p>
             </div>
-            <div>
-              <p>Description: {description}</p>
+            <div className="text-justify mb-2 flex md:w-[1200px]">
+              <p><b>Description:</b> {description}</p>
             </div>
-            <button
-              className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              onClick={toggleShowMore}
-            >
-              Hide Information
-            </button>
+            <hr className="mt-8"></hr>
           </div>
         )}
       </div>

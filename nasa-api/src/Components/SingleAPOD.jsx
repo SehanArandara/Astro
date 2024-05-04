@@ -46,15 +46,15 @@ const SingleAPOD = () => {
   return (
     <div className="mt-20">
       <div className="mt-20 m-10">
-        <h1 className="flex justify-center items-center mb-20 text-5xl">ASTRONOMY PIC OF {apodData?.date}</h1> 
+        <h1 className="flex justify-center items-center mb-20 text-4xl">ASTRONOMY PIC OF {apodData?.date}</h1> 
       </div>
        
-      <div className="justify-center items-center grid grid-cols-2 gap-8 px-8">
+      <div className="justify-center items-center grid grid-cols-2 gap-8 px-8 md:px-24 pb-24">
         <div className="text-justify">
           <div>
             <h1 className="text-3xl font-bold mb-4">{apodData?.title}</h1>
           </div>
-          <div>
+          <div className="">
             <p>{apodData.explanation}</p>
           </div>
         </div>

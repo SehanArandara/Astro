@@ -36,7 +36,7 @@ const SearchResults = () => {
   // Render loading GIF while data is being fetched
   if (loading) {
     return (
-      <div className="flex justify-center items-center mt-10">
+      <div className="flex justify-center items-center mt-10 m-auto">
         <img src={loadingGif} className="mb-4 max-w-full max-h-[500px]" />
       </div>
     );

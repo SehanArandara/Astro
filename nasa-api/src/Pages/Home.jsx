@@ -1,7 +1,10 @@
 import React from 'react'
 import { Footer } from '../Components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+  const navigate = useNavigate();
   return (
     <>
     <div class="md:px-36 px-8 md:py-28 py-5">
@@ -15,7 +18,9 @@ const Home = () => {
           <p class="mt-4">
             This is the web site that include the Media galleries of Uncountable , unmeasurable Universe 
           </p>
-          <button className="bg-black text-white px-2 py-3 rounded-lg hover:bg-white hover:border hover:text-black hover:font-bold mt-4">
+          <button className="bg-black text-white px-2 py-3 rounded-lg hover:bg-white hover:border hover:text-black hover:font-bold mt-4"
+            onClick={()=>{navigate('/login')}}
+          >
             Get started
           </button>
         </div>

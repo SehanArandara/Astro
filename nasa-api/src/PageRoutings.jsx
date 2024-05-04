@@ -6,6 +6,8 @@ import SingleAPOD from './Components/SingleAPOD';
 import SearchResults from './Components/SearchResults';
 import MediaSearch from './Pages/MediaSearch';
 import Home from './Pages/Home';
+import Login from './Login';
+import Signup from './Signup';
 
 const PageRoutings = () => {
 
@@ -22,6 +24,8 @@ const PageRoutings = () => {
         <Route path="/apod/:startDate/:endDate" element={<SearchResults/>}/>
         <Route path="/apod/:startDate" element={<SingleAPOD/>}/>
         <Route path='/media' element={<MediaSearch/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
       </Routes>
     </BrowserRouter>
   );
