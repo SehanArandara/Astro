@@ -59,6 +59,7 @@ const APOD = () => {
                 type="date"
                 id="start_date"
                 value={start}
+                min={new Date()}
                 onChange={(e) => setStart(e.target.value)}
                 className="bg-white ml-7 text-[#313131]  border border-black p-2 rounded-lg" 
               />
