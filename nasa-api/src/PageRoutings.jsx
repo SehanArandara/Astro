@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter,Route,Routes} from "react-router-dom"; 
 import APOD from './Pages/APOD';
 import NavBar from './Components/NavBar';
@@ -8,14 +8,24 @@ import MediaSearch from './Pages/MediaSearch';
 import Home from './Pages/Home';
 import Login from './Login';
 import Signup from './Signup';
+import {auth} from './FireBase';
 
 const PageRoutings = () => {
+
+  const [user,setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const today = new Date().toISOString().slice(0, 10)
 
   return (
     <BrowserRouter>
-      <NavBar/>
+      <NavBar user={user}/>
       <Routes>
         {/* <Route path="/" element={<SingleAPOD date={today} />} /> */}
         <Route path='/' element={<Home/>}/>

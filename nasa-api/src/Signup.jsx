@@ -8,23 +8,35 @@ const Signup = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cPassword, setCPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const validatePasswords = () => {
+    if (password !== cPassword) {
+      setError("Passwords do not match");
+      return false;
+    } else {
+      setError("");
+      return true;
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const isValid = validatePasswords();
+
+    if (!isValid) return;
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log(user);
         navigate("/login");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   };
 
@@ -62,80 +74,26 @@ const Signup = () => {
             <input
               type="password"
               label="Create password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={cPassword}
+              onChange={(e) => setCPassword(e.target.value)}
               required
               className="bordder-[#E9EDF4] w-full text-base rounded-3xl border bg-[#FCFDFE] py-3 px-5 text-body-color focus:ring placeholder-[#ACB6BE] outline-none focus:border-[#41A4FF] focus-visible:shadow-none"
               placeholder="Confirm Password"
             />
           </div>
+          <div className="mb-2 text-red-500">{error}</div>
           <div className="mb-10">
-            <button type="submit" 
-                onClick={onSubmit}
-                className=" w-full font-bold text-center hover:bg-gray-600 cursor-pointer rounded-3xl bg-[#41A4FF] py-3 px-5 text-white transition hover:bg-opacity-90"
-                >
+            <button
+              type="submit"
+              onClick={onSubmit}
+              className=" w-full font-bold text-center hover:bg-gray-600 cursor-pointer rounded-3xl bg-[#41A4FF] py-3 px-5 text-white transition hover:bg-opacity-90"
+            >
               Sign up
             </button>
           </div>
         </form>
       </div>
     </div>
-
-    // <main >
-    //     <section>
-    //         <div>
-    //             <div>
-    //                 <h1> FocusApp </h1>
-    //                 <form>
-    //                     <div>
-    //                         <label htmlFor="email-address">
-    //                             Email address
-    //                         </label>
-    //                         <input
-    //                             type="email"
-    //                             label="Email address"
-    //                             value={email}
-    //                             className='text-black'
-    //                             onChange={(e) => setEmail(e.target.value)}
-    //                             required
-    //                             placeholder="Email address"
-    //                         />
-    //                     </div>
-
-    //                     <div>
-    //                         <label htmlFor="password">
-    //                             Password
-    //                         </label>
-    //                         <input
-    //                             type="password"
-    //                             label="Create password"
-    //                             value={password}
-    //                             className='text-black'
-    //                             onChange={(e) => setPassword(e.target.value)}
-    //                             required
-    //                             placeholder="Password"
-    //                         />
-    //                     </div>
-
-    //                     <button
-    //                         type="submit"
-    //                         onClick={onSubmit}
-    //                     >
-    //                         Sign up
-    //                     </button>
-
-    //                 </form>
-
-    //                 <p>
-    //                     Already have an account?{' '}
-    //                     <NavLink to="/login" >
-    //                         Sign in
-    //                     </NavLink>
-    //                 </p>
-    //             </div>
-    //         </div>
-    //     </section>
-    // </main>
   );
 };
 

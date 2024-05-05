@@ -1,24 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { auth } from '../FireBase';
 
-const NavBar = () => {
+
+const NavBar = ({ user }) => {
+
+  const handleUID = ()=>{
+    auth.signOut();
+    sessionStorage.removeItem('uid');
+  }
   return (
     <div className="">
       <nav className="bg-blue-gray-900 p-4 flex justify-between items-center border-b-2 border-[#41A4FF] ">
         <div className="text-[#41A4FF] font-bold text-xl">Astronomy App</div>
         <div className="hidden md:block">
-          <Link to="/" className="text-white mx-4 hover:text-blue-100">
-            Home
-          </Link>
-          <Link to="/apod" className="text-white mx-4 hover:text-blue-100">
-            Astronomy Pics
-          </Link>
-          <Link to="/media" className="text-white mx-4 hover:text-blue-100">
-            Media Search
-          </Link>
-          <Link to="/login" className="text-white mx-4 hover:text-blue-100">
-            Log In
-          </Link>
+          {user ? (
+            <>
+              <Link to="/" className="text-white mx-4 hover:text-blue-100">
+                Home
+              </Link>
+              <Link to="/apod" className="text-white mx-4 hover:text-blue-100">
+                Astronomy Pics
+              </Link>
+              <Link to="/media" className="text-white mx-4 hover:text-blue-100">
+                Media Search
+              </Link>
+              <Link to="/" className="text-white mx-4 hover:text-blue-100" onClick={handleUID}>
+                log out
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="text-white mx-4 hover:text-blue-100">
+                log in
+              </Link>
+            </>
+          )}
         </div>
         <div className="md:hidden">
           <button className="text-white hover:text-cosmic-silver focus:outline-none">

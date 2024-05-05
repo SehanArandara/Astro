@@ -14,7 +14,8 @@ const Login = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            navigate("/home")
+            sessionStorage.setItem('uid', user.uid);
+            navigate("/")
             console.log(user);
         })
         .catch((error) => {
@@ -35,7 +36,7 @@ const Login = () => {
                 <div className="mb-10 text-center md:mb-16">
                   <h2 className="text-5xl font-bold">LOGIN</h2>
                 </div>
-                <form>                                              
+                <form className='text-black'>                                              
                             <div className="mb-6">
                                 <input
                                     id="email"

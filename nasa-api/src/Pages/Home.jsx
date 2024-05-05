@@ -1,40 +1,63 @@
-import React from 'react'
-import { Footer } from '../Components/Footer';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Footer } from "../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [uid, setUID] = useState(sessionStorage.getItem("uid"));
+
+  useEffect(() => {
+    setUID(sessionStorage.getItem("uid")); // Update uid state when component mounts
+  }, []); // Empty dependency array to run the effect only once when component mounts
+
+  useEffect(() => {
+    // Update uid state when sessionStorage changes
+    const handleStorageChange = () => {
+      setUID(sessionStorage.getItem("uid"));
+    };
+    window.addEventListener("storage", handleStorageChange);
+    
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const navigate = useNavigate();
   return (
     <>
-    <div class="md:px-36 px-8 md:py-28 py-5">
-      <div class="flex lg:flex-row flex-col grid-cols-2 gap-10">
-        <div class="flex flex-col gap-5 justify-center p-5">
-          <h1 class="text-4xl md:text-5xl font-bold">Explore</h1>
-          <h1 class="text-4xl md:text-5xl font-bold">the Wonders in</h1>
-          <h1 class="text-4xl md:text-6xl font-bold text-[#41A4FF]">
-            Universe
-          </h1>
-          <p class="mt-4">
-            This is the web site that include the Media galleries of Uncountable , unmeasurable Universe 
-          </p>
-          <button className="bg-black text-white px-2 py-3 rounded-lg hover:bg-white hover:border hover:text-black hover:font-bold mt-4"
-            onClick={()=>{navigate('/login')}}
-          >
-            Get started
-          </button>
-        </div>
-        <div class="">
-          <img
-            src="https://static1.squarespace.com/static/635ed3da7198ed5ea5acfbb3/t/63ae1e005232d656fe359bf6/1672355331284/unsplash-image-9wH624ALFQA.jpg?format=1500w"
-            alt="heroimg"
-            class="rounded-3xl h-96 w-full object-fit"
-          />
+      <div class="md:px-36 px-8 md:py-28 py-5">
+        <div class="flex lg:flex-row flex-col grid-cols-2 gap-10">
+          <div class="flex flex-col gap-5 justify-center p-5">
+            <h1 class="text-4xl md:text-5xl font-bold">Explore</h1>
+            <h1 class="text-4xl md:text-5xl font-bold">the Wonders in</h1>
+            <h1 class="text-4xl md:text-6xl font-bold text-[#41A4FF]">
+              Universe
+            </h1>
+            <p class="mt-4">
+              This is the web site that include the Media galleries of
+              Uncountable , unmeasurable Universe
+            </p>
+            {!uid && (
+              <button
+                className="bg-black text-white px-2 py-3 rounded-lg hover:bg-white hover:border hover:text-black hover:font-bold mt-4"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Get started
+              </button>
+            )}
+          </div>
+          <div class="">
+            <img
+              src="https://static1.squarespace.com/static/635ed3da7198ed5ea5acfbb3/t/63ae1e005232d656fe359bf6/1672355331284/unsplash-image-9wH624ALFQA.jpg?format=1500w"
+              alt="heroimg"
+              class="rounded-3xl h-96 w-full object-fit"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div className="lg:px-36 md:py-5 px-5">
+
+      <div className="lg:px-36 md:py-5 px-5">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap items-center justify-between">
             <div className="w-full lg:w-6/12">
@@ -90,9 +113,9 @@ const Home = () => {
         </div>
       </div>
 
-    <Footer/>
-  </>
-  )
-}
+      <Footer />
+    </>
+  );
+};
 
 export default Home;
